@@ -1,7 +1,6 @@
-// swayctl
+// sg-launch.go
 
 // TODO: add function that brings target to current screen if it is open elsewhere (selectable by flag)
-// TODO: add functions for switching to / sending to the next open workspace (selectable by flag)
 
 package main
 
@@ -32,15 +31,7 @@ func main() {
 		log.Fatal(err)
 	}
 	
-	command := os.Args[1]
+	target := os.Args[1]
 
-	if command == "focus" {
-		target := os.Args[2]
-		focus_or_launch(tree, target)		
-	}
-
-	if command == "free" {
-		//		focus_free_ws()
-	}
-
+	focus_or_launch(tree, target)		
 }
