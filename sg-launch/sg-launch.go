@@ -23,6 +23,9 @@ func bring_to_current(appid string) {
 
 	i3.RunCommand("[app_id=" + appid + "] move to workspace " + current_ws.Name)
 	i3.RunCommand("[instance=" + appid + "] move to workspace " + current_ws.Name)
+
+	i3.RunCommand("[app_id=" + appid + "] focus")
+	i3.RunCommand("[instance=" + appid + "] focus")
 }
 
 func focus_or_launch(appid string) {
@@ -54,6 +57,7 @@ func main() {
 	
 	if *bringFlag {
 		bring_to_current(target)
+	} else {
+		focus_or_launch(target)
 	}
-	focus_or_launch(target)		
 }
