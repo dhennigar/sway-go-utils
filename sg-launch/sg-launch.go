@@ -28,6 +28,24 @@ func bring_to_current(appid string) {
 	i3.RunCommand("[instance=" + appid + "] focus")
 }
 
+func send_to_target(appid string) {
+	tree, err := i3.GetTree()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	child := tree.Root.FindChild(func(n *i3.Node) bool {
+		return strings.HasSuffix(n.AppID, appid) || strings.HasSuffix(n.WindowProperties.Instance, appid)
+	})
+
+	parent := child.FindParent()
+
+	if child != nil && parent != nil {
+		i3.RunCommand("[con_id=__focused__] move to workspace " + parent.Name)
+		i3.RunCommand("workspace " + parent.Name)
+	}
+}
+
 func focus_or_launch(appid string) {
 
 	tree, err := i3.GetTree()
@@ -49,14 +67,16 @@ func focus_or_launch(appid string) {
 
 func main() {
 
-	//	var sendFlag = flag.Bool("s", false, "send focused window to target")
 	var bringFlag = flag.Bool("b", false, "bring target to current workspace")
+	var sendFlag = flag.Bool("s", false, "send focused window to target's workspace")
 	flag.Parse()
 	
 	target := flag.Arg(0)
 	
 	if *bringFlag {
 		bring_to_current(target)
+	} else if *sendFlag {
+		send_to_target(target)
 	} else {
 		focus_or_launch(target)
 	}
