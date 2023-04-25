@@ -73,11 +73,12 @@ func main() {
 	
 	target := flag.Arg(0)
 	
-	if *bringFlag {
+	switch {
+	case *bringFlag:
 		bring_to_current(target)
-	} else if *sendFlag {
+	case *sendFlag:
 		send_to_target(target)
-	} else {
+	default:
 		focus_or_launch(target)
 	}
 }
