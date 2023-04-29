@@ -1,14 +1,15 @@
 # sway-go-utils
 Extended functionality for the Sway Wayland compositor written in Go.
 
-## `launch`
-focuses the given program if it exists. Else, launches a new instance.
-`launch -b` brings the target program to the current workspace
+## `launch <app_id>`
+Focus the given `app_id` if it exists. Else, launch a new instance.
+`launch -b` brings `app_id` to the current workspace if it exists elsewhere.
 
 ## `new-workspace`
-creates a new free workspace.
-`new-workspace -m` moves currently focused window to a free workspace.
+Create a new empty workspace.
+`new-workspace -m` moves focused window to an empty workspace.
 
 ## `mark-recapture`
-marks window for easy access. subsequent calls focus that window.
+Mark a window for easy recall. Subsequent calls to `mark-recapture` refocus that window.
 `mark-recapture -n` marks a new window and `mark-recapture -b` brings marked window to current workspace.
+Only one window may be marked at a time.
