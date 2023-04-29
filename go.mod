@@ -1,4 +1,4 @@
-module sg-mark
+module sway-go-utils
 
 go 1.20
 

@@ -17,7 +17,7 @@ func contains(s []int64, i int64) bool {
 	return false
 }
 
-func FindFreeWorkspace() int {
+func find_free_workspace() int {
 	
 	workspaces, err := i3.GetWorkspaces()
 	if err != nil {
@@ -43,7 +43,7 @@ func main() {
 	var moveFlag = flag.Bool("m", false, "move the focused view to new ws")
 	flag.Parse()
 
-	free_ws := strconv.FormatInt(int64(FindFreeWorkspace()), 10)
+	free_ws := strconv.FormatInt(int64(find_free_workspace()), 10)
 
 	if *moveFlag {
 		i3.RunCommand("move to workspace " + free_ws)
