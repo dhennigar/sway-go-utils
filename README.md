@@ -1,5 +1,5 @@
 # sway-go-utils
-Extended functionality for the Sway Wayland compositor written in Go.
+Extended functionality for the [sway wayland compositor](https://github.com/swaywm/sway) written in go.
 
 ## `launch <app_id>`
 Focus the given `app_id` if it exists. Else, launch a new instance.
